@@ -1,0 +1,31 @@
+.years td {
+    text-align: center;
+    padding: 0.2em;
+}
+
+.years__cell--current {
+    background-color: rgba(207, 54, 54, 0.5);
+    border-radius: 2em;
+}
+
+.months td {
+    padding: 0.2em;
+}
+
+.months__cell--current {
+    background-color: rgba(207, 54, 54, 0.5);
+    border-radius: 2em;
+}
+
+.month td {
+    max-width: 1.5em;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+}
+
+.month__cell--today {
+    background-color: rgba(207, 54, 54, 0.5);
+    border-radius: 2em;
+    padding: 0.2em;
+}

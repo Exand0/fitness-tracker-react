@@ -27,6 +27,7 @@ function Month(props) {
                         ? "month__cell--day month__cell--today"
                         : "month__cell--day"
                 }
+                onClick={e => props.onDayChange(i)}
             >
                 {i}
             </td>
@@ -44,7 +45,7 @@ function Month(props) {
         <table className="month">
             <thead>
                 <tr>
-                    <td>Month</td>
+                    <td /* onClick={} */>Month</td>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

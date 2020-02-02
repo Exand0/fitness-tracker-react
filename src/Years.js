@@ -4,7 +4,7 @@ function Years(props) {
     let rows = [];
     let cells = [];
     let week = 0;
-    const fullYear = props.date.getFullYear();
+    let fullYear = props.date.getFullYear();
 
     for (let year = 0; year < 12; year++) {
         let currYear = fullYear - 1 + year;
@@ -17,7 +17,7 @@ function Years(props) {
                         ? "years__cell years__cell--current"
                         : "years__cell"
                 }
-                onClick={e => props.onYearChange(currYear)}
+                onClick={e => props.onYearClick(currYear)}
             >
                 {currYear}
             </td>

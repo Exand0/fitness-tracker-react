@@ -14,6 +14,7 @@ function Year(props) {
                         ? "months__cell months__cell--current"
                         : "months__cell"
                 }
+                onClick={e => props.onMonthClick(i)}
             >
                 {date.toLocaleString("default", { month: "long" })}
             </td>

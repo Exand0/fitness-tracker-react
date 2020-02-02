@@ -27,7 +27,14 @@ function Month(props) {
                         ? "month__cell--day month__cell--today"
                         : "month__cell--day"
                 }
-                onClick={e => props.onDayChange(i)}
+                onClick={e =>
+                    props.handleClick(
+                        "down",
+                        props.date.getFullYear(),
+                        props.date.getMonth(),
+                        i
+                    )
+                }
             >
                 {i}
             </td>
@@ -45,7 +52,7 @@ function Month(props) {
         <table className="month">
             <thead>
                 <tr>
-                    <td /* onClick={} */>Month</td>
+                    <td onClick={e => props.handleClick("up")}>Month</td>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

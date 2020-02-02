@@ -7,17 +7,13 @@ class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = { date: new Date(), view: 0 };
-        this.handleYearChange = this.handleYearChange.bind(this);
-        this.handleMonthChange = this.handleMonthChange.bind(this);
-        this.handleDayChange = this.handleDayChange.bind(this);
-        this.handleYearClick = this.handleYearClick.bind(this);
-        this.handleMonthClick = this.handleMonthClick.bind(this);
         this.navigateView = this.navigateView.bind(this);
-        //this.handleDayClick = this.handleDayClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     navigateView(to) {
         let ind = 0;
+        console.log(this.state.view);
         if (to === "down") {
             if (this.state.view % 2 !== 0 || this.state.view == 0) {
                 ind = 1;
@@ -35,32 +31,10 @@ class Calendar extends Component {
         month = this.state.date.getMonth(),
         day = 1
     ) {
-        this.setState(state => ({
-            date: new Date(year, month, day)
-        }));
-    }
-    handleYearClick(year, direction) {
-        this.handleYearChange(year);
-        this.navigateView(direction);
-    }
-    handleMonthClick(month) {
-        this.handleMonthChange(month);
-        this.navigateView("down");
-    }
-    handleYearChange(year) {
         this.setState({
-            date: new Date(year, 0, 1)
+            date: new Date(year, month, day)
         });
-    }
-    handleMonthChange(month) {
-        this.setState(state => ({
-            date: new Date(state.date.getFullYear(), month, 1)
-        }));
-    }
-    handleDayChange(day) {
-        this.setState(state => ({
-            date: new Date(state.date.getFullYear(), state.date.getMonth(), day)
-        }));
+        this.navigateView(direction);
     }
     render() {
         let view;
@@ -69,7 +43,7 @@ class Calendar extends Component {
                 view = (
                     <Years
                         date={this.state.date}
-                        onYearClick={this.handleYearClick}
+                        handleClick={this.handleClick}
                     ></Years>
                 );
                 break;
@@ -77,7 +51,7 @@ class Calendar extends Component {
                 view = (
                     <Year
                         date={this.state.date}
-                        onMonthClick={this.handleMonthClick}
+                        handleClick={this.handleClick}
                     ></Year>
                 );
                 break;
@@ -85,7 +59,7 @@ class Calendar extends Component {
                 view = (
                     <Month
                         date={this.state.date}
-                        onDayChange={this.handleDayChange}
+                        handleClick={this.handleClick}
                     ></Month>
                 );
                 break;

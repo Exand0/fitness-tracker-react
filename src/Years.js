@@ -17,7 +17,7 @@ function Years(props) {
                         ? "years__cell years__cell--current"
                         : "years__cell"
                 }
-                onClick={e => props.onYearClick(currYear, "down")}
+                onClick={e => props.handleClick("down", currYear)}
             >
                 {currYear}
             </td>

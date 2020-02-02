@@ -14,7 +14,9 @@ function Year(props) {
                         ? "months__cell months__cell--current"
                         : "months__cell"
                 }
-                onClick={e => props.onMonthClick(i)}
+                onClick={e =>
+                    props.handleClick("down", props.date.getFullYear(), i)
+                }
             >
                 {date.toLocaleString("default", { month: "long" })}
             </td>
@@ -28,7 +30,7 @@ function Year(props) {
         <table className="months">
             <thead>
                 <tr>
-                    <td>Months</td>
+                    <td onClick={e => props.handleClick("up")}>Months</td>
                 </tr>
             </thead>
             <tbody>{rows}</tbody>

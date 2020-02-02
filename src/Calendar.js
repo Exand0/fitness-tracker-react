@@ -18,10 +18,8 @@ class Calendar extends Component {
 
     navigateView(to) {
         let ind = 0;
-        console.log(this.state.view % 2);
         if (to === "down") {
             if (this.state.view % 2 !== 0 || this.state.view == 0) {
-                console.log("test");
                 ind = 1;
             }
         } else if (to === "up") {
@@ -31,9 +29,19 @@ class Calendar extends Component {
         }
         this.setState(state => ({ view: state.view + ind }));
     }
-    handleYearClick(year) {
+    handleClick(
+        direction,
+        year = this.state.date.getFullYear(),
+        month = this.state.date.getMonth(),
+        day = 1
+    ) {
+        this.setState(state => ({
+            date: new Date(year, month, day)
+        }));
+    }
+    handleYearClick(year, direction) {
         this.handleYearChange(year);
-        this.navigateView("down");
+        this.navigateView(direction);
     }
     handleMonthClick(month) {
         this.handleMonthChange(month);

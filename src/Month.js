@@ -1,4 +1,5 @@
 import React from "react";
+import Control from "./Control";
 
 function Month(props) {
     let rows = [];
@@ -53,15 +54,12 @@ function Month(props) {
     });
 
     return (
-        <div className="control">
-            <button className="control__previous">&lt;</button>
-            <p
-                className="control__label"
-                onClick={e => props.handleClick("up")}
-            >
-                Month
-            </p>
-            <button className="control__next">&gt;</button>
+        <div>
+            <Control
+                handleClick={props.handleClick}
+                // passing month switcher from Calendar further to controls
+                switchMonth={props.switchMonth}
+            ></Control>
             <table className="month">
                 <thead>
                     <tr></tr>

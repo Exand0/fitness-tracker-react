@@ -9,6 +9,7 @@ class Calendar extends Component {
         this.state = { date: new Date(), view: 0 };
         this.navigateView = this.navigateView.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.switchMonth = this.switchMonth.bind(this);
     }
 
     navigateView(to) {
@@ -23,6 +24,16 @@ class Calendar extends Component {
             }
         }
         this.setState(state => ({ view: state.view + ind }));
+    }
+    switchMonth(ind) {
+        this.setState({
+            date: new Date(
+                this.state.date.getFullYear(),
+                this.state.date.getMonth() + ind,
+                1
+            )
+        });
+        console.log(this.state.date);
     }
     handleClick(
         direction,
@@ -59,6 +70,7 @@ class Calendar extends Component {
                     <Month
                         date={this.state.date}
                         handleClick={this.handleClick}
+                        switchMonth={this.switchMonth}
                     ></Month>
                 );
                 break;

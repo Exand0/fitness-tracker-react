@@ -13,7 +13,6 @@ class Calendar extends Component {
 
     navigateView(to) {
         let ind = 0;
-        console.log(this.state.view);
         if (to === "down") {
             if (this.state.view % 2 !== 0 || this.state.view == 0) {
                 ind = 1;

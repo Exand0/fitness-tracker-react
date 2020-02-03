@@ -41,8 +41,23 @@ html {
     padding: 0.1em;
 }
 
+.month__cell--weekend {
+    background-color: rgba(101, 224, 255, 0.5);
+    border-radius: 2em;
+}
+
 .month__cell--today {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
     padding: 0.1em;
+}
+
+.control {
+    text-align: center;
+}
+
+.control__previous,
+.control__next,
+.control__label {
+    display: inline-block;
 }

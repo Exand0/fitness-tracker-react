@@ -28,14 +28,15 @@ function Years(props) {
         }
     }
     return (
-        <table className="years">
-            <thead>
-                <tr>
-                    <td>Years</td>
-                </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <div>
+            <p>Years</p>
+            <table className="years">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
     );
 }
 

@@ -18,15 +18,19 @@ function Month(props) {
     }
 
     for (let i = firstDayDate.getDate(); i <= lastDayDate.getDate(); i++) {
+        let tdClassName = ["month__cell--day"];
+        if ((i + firstWeekDay) % 7 === 6 || (i + firstWeekDay) % 7 === 0) {
+            tdClassName.push("month__cell--weekend");
+        }
+        if (i == today) {
+            tdClassName.push("month__cell--today");
+        }
+
         cells.push(
             <td
                 key={`day${i}`}
                 id={i}
-                className={
-                    i === today
-                        ? "month__cell--day month__cell--today"
-                        : "month__cell--day"
-                }
+                className={tdClassName.join(" ")}
                 onClick={e =>
                     props.handleClick(
                         "down",
@@ -49,14 +53,22 @@ function Month(props) {
     });
 
     return (
-        <table className="month">
-            <thead>
-                <tr>
-                    <td onClick={e => props.handleClick("up")}>Month</td>
-                </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <div className="control">
+            <button className="control__previous">&lt;</button>
+            <p
+                className="control__label"
+                onClick={e => props.handleClick("up")}
+            >
+                Month
+            </p>
+            <button className="control__next">&gt;</button>
+            <table className="month">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
     );
 }
 

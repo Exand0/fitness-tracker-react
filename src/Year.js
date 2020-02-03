@@ -27,14 +27,15 @@ function Year(props) {
         }
     }
     return (
-        <table className="months">
-            <thead>
-                <tr>
-                    <td onClick={e => props.handleClick("up")}>Months</td>
-                </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
+        <div>
+            <p onClick={e => props.handleClick("up")}>Months</p>
+            <table className="months">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody>{rows}</tbody>
+            </table>
+        </div>
     );
 }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Control from "./Control";
 
 function Year(props) {
     let rows = [];
@@ -28,7 +29,12 @@ function Year(props) {
     }
     return (
         <div>
-            <p onClick={e => props.handleClick("up")}>Months</p>
+            <Control
+                handleClick={props.handleClick}
+                label={`Year: ${props.date.getFullYear()}`}
+                setDate={props.setDate}
+                type="y"
+            ></Control>
             <table className="months">
                 <thead>
                     <tr></tr>

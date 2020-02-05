@@ -8,18 +8,18 @@ html {
 }
 .calendar {
 }
-.years__cell:not(.years__cell--current):hover,
+.decade__cell:not(.decade__cell--current):hover,
 .months__cell:not(.months__cell--current):hover,
 .month__cell--day:not(.month__cell--today):hover {
     background-color: rgba(255, 152, 152, 0.5);
     border-radius: 2em;
 }
-.years td {
+.decade td {
     text-align: center;
     padding: 0.2em;
 }
 
-.years__cell--current {
+.decade__cell--current {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
 }

@@ -57,8 +57,11 @@ function Month(props) {
         <div>
             <Control
                 handleClick={props.handleClick}
-                // passing month switcher from Calendar further to controls
-                switchMonth={props.switchMonth}
+                // passing switcher from Calendar further to controls
+                label="Month"
+                setDate={props.setDate}
+                date={props.date}
+                type="m"
             ></Control>
             <table className="month">
                 <thead>

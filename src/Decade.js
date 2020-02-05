@@ -1,21 +1,25 @@
 import React from "react";
+import Control from "./Control";
 
-function Years(props) {
+function Decade(props) {
     let rows = [];
     let cells = [];
     let week = 0;
     let fullYear = props.date.getFullYear();
-
+    let decade = fullYear;
+    while (decade % 10 !== 0) {
+        decade++;
+    }
     for (let year = 0; year < 12; year++) {
-        let currYear = fullYear - 1 + year;
+        let currYear = decade - 1 + year;
         cells.push(
             <td
                 id={year}
                 key={year}
                 className={
                     currYear === fullYear
-                        ? "years__cell years__cell--current"
-                        : "years__cell"
+                        ? "decade__cell decade__cell--current"
+                        : "decade__cell"
                 }
                 onClick={e => props.handleClick("down", currYear)}
             >
@@ -29,8 +33,16 @@ function Years(props) {
     }
     return (
         <div>
-            <p>Years</p>
-            <table className="years">
+            <Control
+                handleClick={props.handleClick}
+                // passing switcher from Calendar further to controls
+                label="Decade"
+                setDate={props.setDate}
+                date={props.date}
+                type="dec"
+            ></Control>
+            <p>Decade</p>
+            <table className="decade">
                 <thead>
                     <tr></tr>
                 </thead>
@@ -40,4 +52,4 @@ function Years(props) {
     );
 }
 
-export default Years;
+export default Decade;

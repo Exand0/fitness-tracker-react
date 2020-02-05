@@ -5,7 +5,7 @@ const Control = props => {
         <div className="control">
             <button
                 className="control__previous"
-                onClick={() => props.switchMonth(-1)}
+                onClick={() => props.setDate(props.type, -1)}
             >
                 &lt;
             </button>
@@ -13,17 +13,16 @@ const Control = props => {
                 className="control__label"
                 onClick={() => props.handleClick("up")}
             >
-                Month
+                {props.label}
             </p>
             <button
                 className="control__next"
-                onClick={() => props.switchMonth(1)}
+                onClick={() => props.setDate(props.type, 1)}
             >
                 &gt;
             </button>
         </div>
     );
 };
-<div className="control"></div>;
 
 export default Control;

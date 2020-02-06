@@ -8,7 +8,8 @@ class Calendar extends Component {
         super(props);
         this.state = {
             date: new Date(),
-            view: 0
+            view: 0,
+            decade: Math.floor(new Date().getFullYear())
         };
         this.navigateView = this.navigateView.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -32,6 +33,7 @@ class Calendar extends Component {
         let year = this.state.date.getFullYear();
         let month = this.state.date.getMonth();
         let day = this.state.date.getDate();
+        let decade = this.state.decade;
         switch (type) {
             case "d": {
                 day += ind;
@@ -46,12 +48,13 @@ class Calendar extends Component {
                 break;
             }
             case "dec": {
-                year += ind;
+                decade += ind * 10;
                 break;
             }
         }
         this.setState({
-            date: new Date(year, month, day)
+            date: new Date(year, month, day),
+            decade: decade
         });
     }
     handleClick(
@@ -73,6 +76,8 @@ class Calendar extends Component {
                     <Decade
                         date={this.state.date}
                         handleClick={this.handleClick}
+                        setDate={this.setDate}
+                        decade={this.state.decade}
                     ></Decade>
                 );
                 break;
@@ -95,7 +100,7 @@ class Calendar extends Component {
                 );
                 break;
         }
-        return <div>{view}</div>;
+        return view;
     }
 }
 

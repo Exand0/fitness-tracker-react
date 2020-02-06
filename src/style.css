@@ -1,3 +1,6 @@
+:root {
+    --control__button--scale: 2;
+}
 body,
 html {
     height: 100%;
@@ -6,14 +9,18 @@ html {
 #root {
     margin: auto;
 }
-.calendar {
-}
+
 .decade__cell:not(.decade__cell--current):hover,
 .months__cell:not(.months__cell--current):hover,
 .month__cell--day:not(.month__cell--today):hover {
     background-color: rgba(255, 152, 152, 0.5);
     border-radius: 2em;
 }
+
+.decade {
+    margin: auto;
+}
+
 .decade td {
     text-align: center;
     padding: 0.2em;
@@ -53,11 +60,52 @@ html {
 }
 
 .control {
-    text-align: center;
+    margin-bottom: 1em;
 }
 
-.control__previous,
-.control__next,
+.control {
+    margin: auto;
+}
+
 .control__label {
     display: inline-block;
+}
+
+.control__button--wrapper {
+    display: inline-block;
+    padding: 2em;
+}
+
+.control__button--previous,
+.control__button--next {
+    font-size: 100%;
+    font-family: inherit;
+    background: none;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 0.3em;
+    vertical-align: middle;
+}
+
+.control__button--previous {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.control__button--next {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.control__button--wrapper:hover .control__button--previous {
+    transform: rotate(135deg) scale(var(--control__button--scale));
+    -webkit-transform: rotate(135deg) scale(var(--control__button--scale));
+}
+.control__button--wrapper:hover .control__button--next {
+    transform: rotate(-45deg) scale(var(--control__button--scale));
+    -webkit-transform: rotate(-45deg) scale(var(--control__button--scale));
+}
+
+.control p {
+    margin: 0 1em 0 1em;
 }

@@ -19,21 +19,29 @@ class Calendar extends Component {
     navigateView(to) {
         let ind = 0;
         if (to === "down") {
-            if (this.state.view % 2 !== 0 || this.state.view == 0) {
+            if (this.state.view >= 0 && this.state.view < 2) {
                 ind = 1;
             }
         } else if (to === "up") {
-            if (this.state.view % 2 !== 0 || this.state.view == 2) {
+            if (this.state.view > 0 && this.state.view <= 2) {
                 ind = -1;
             }
         }
         this.setState(state => ({ view: state.view + ind }));
+    }
+    showToday() {
+        this.setState({
+            date: new Date(),
+            decade: Math.floor(new Date().getFullYear()),
+            view: 2
+        });
     }
     setDate(type, ind) {
         let year = this.state.date.getFullYear();
         let month = this.state.date.getMonth();
         let day = this.state.date.getDate();
         let decade = this.state.decade;
+
         switch (type) {
             case "d": {
                 day += ind;

@@ -8,6 +8,10 @@ html {
 }
 #root {
     margin: auto;
+    -webkit-user-select: none; /* Chrome all / Safari all */
+    -moz-user-select: none; /* Firefox all */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
 }
 
 .decade__cell:not(.decade__cell--current):hover,
@@ -15,6 +19,7 @@ html {
 .month__cell--day:not(.month__cell--today):hover {
     background-color: rgba(255, 152, 152, 0.5);
     border-radius: 2em;
+    cursor: pointer;
 }
 
 .decade {
@@ -29,6 +34,7 @@ html {
 .decade__cell--current {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
+    cursor: pointer;
 }
 
 .months td {
@@ -38,6 +44,7 @@ html {
 .months__cell--current {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
+    cursor: pointer;
 }
 
 .month td {
@@ -57,43 +64,55 @@ html {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
     padding: 0.1em;
+    cursor: pointer;
 }
 
-.control {
-    margin-bottom: 1em;
-}
-
-.control {
-    margin: auto;
+.control__button,
+.control__button::-moz-focus-inner {
+    font-size: 100%;
+    font-family: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
 }
 
 .control__label {
-    display: inline-block;
+    margin: 1em;
+    padding: 1em;
 }
 
 .control__button--wrapper {
     display: inline-block;
-    padding: 2em;
+    cursor: pointer;
+    padding: 1em;
+    margin: -1em;
+}
+
+.control__button--today {
+    display: block;
+    margin: 0 auto;
 }
 
 .control__button--previous,
 .control__button--next {
-    font-size: 100%;
-    font-family: inherit;
-    background: none;
     border: solid black;
     border-width: 0 3px 3px 0;
-    display: inline-block;
     padding: 0.3em;
     vertical-align: middle;
+    position: relative;
+    margin: 1em;
 }
 
 .control__button--previous {
+    margin-right: 2em;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
 
 .control__button--next {
+    margin-left: 2em;
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }
@@ -104,8 +123,4 @@ html {
 .control__button--wrapper:hover .control__button--next {
     transform: rotate(-45deg) scale(var(--control__button--scale));
     -webkit-transform: rotate(-45deg) scale(var(--control__button--scale));
-}
-
-.control p {
-    margin: 0 1em 0 1em;
 }

@@ -3,24 +3,24 @@ import React from "react";
 const Control = props => {
     return (
         <div className="control">
-            <div
-                onClick={() => props.setDate(props.type, -1)}
-                className="control__button--wrapper"
-            >
-                <button className="control__button--previous"></button>
+            <button className="control__button control__button--today">
+                Today
+            </button>
+            <div className="control__button--wrapper">
+                <button
+                    className="control__button control__button--previous"
+                    onClick={() => props.setDate(props.type, -1)}
+                ></button>
             </div>
-            <p
-                className="control__label"
+            <button
+                className="control__button control__label"
                 onClick={() => props.handleClick("up")}
             >
                 {props.label}
-            </p>
-            <div
-                onClick={() => props.setDate(props.type, 1)}
-                className="control__button--wrapper"
-            >
+            </button>
+            <div className="control__button--wrapper">
                 <button
-                    className="control__button--next"
+                    className="control__button control__button--next"
                     onClick={() => props.setDate(props.type, 1)}
                 ></button>
             </div>

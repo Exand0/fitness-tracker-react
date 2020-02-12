@@ -19,7 +19,16 @@ function Decade(props) {
                         ? "decade__cell decade__cell--current"
                         : "decade__cell"
                 }
-                onClick={e => props.handleClick("down", currYear)}
+                onClick={() => {
+                    props.navigateView(1);
+                    props.setDate(
+                        new Date(
+                            currYear,
+                            props.date.getMonth(),
+                            props.date.getDate()
+                        )
+                    );
+                }}
             >
                 {currYear}
             </td>
@@ -32,10 +41,11 @@ function Decade(props) {
     return (
         <div>
             <Control
-                handleClick={props.handleClick}
+                navigateView={props.navigateView}
                 // passing switcher from Calendar further to controls
                 label="Decade"
                 setDate={props.setDate}
+                adjustDate={props.adjustDate}
                 date={props.date}
                 type="dec"
             ></Control>

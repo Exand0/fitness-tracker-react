@@ -1,5 +1,5 @@
 :root {
-    --control__button--scale: 2;
+    --control__button--scale: 1.8;
 }
 body,
 html {
@@ -15,7 +15,7 @@ html {
 }
 
 .decade__cell:not(.decade__cell--current):hover,
-.months__cell:not(.months__cell--current):hover,
+.year__cell:not(.year__cell--current):hover,
 .month__cell--day:not(.month__cell--today):hover {
     background-color: rgba(255, 152, 152, 0.5);
     border-radius: 2em;
@@ -37,14 +37,22 @@ html {
     cursor: pointer;
 }
 
-.months td {
+.year {
+    margin: auto;
+}
+
+.year td {
     padding: 0.2em;
 }
 
-.months__cell--current {
+.year__cell--current {
     background-color: rgba(207, 54, 54, 0.5);
     border-radius: 2em;
     cursor: pointer;
+}
+
+.month {
+    margin: auto;
 }
 
 .month td {
@@ -67,6 +75,10 @@ html {
     cursor: pointer;
 }
 
+.control {
+    text-align: center;
+}
+
 .control__button,
 .control__button::-moz-focus-inner {
     font-size: 100%;
@@ -78,21 +90,25 @@ html {
     cursor: pointer;
 }
 
-.control__label {
-    margin: 1em;
+.control__button--back {
     padding: 1em;
+    margin: 0em 2em 0em 2em;
 }
 
-.control__button--wrapper {
-    display: inline-block;
-    cursor: pointer;
-    padding: 1em;
-    margin: -1em;
+.control__button--back:hover {
+    transform: scale(var(--control__button--scale));
+    -webkit-transform: scale(var(--control__button--scale));
 }
 
 .control__button--today {
     display: block;
     margin: 0 auto;
+    padding: 1em;
+}
+
+.control__button--today:hover {
+    transform: scale(var(--control__button--scale));
+    -webkit-transform: scale(var(--control__button--scale));
 }
 
 .control__button--previous,
@@ -106,21 +122,69 @@ html {
 }
 
 .control__button--previous {
-    margin-right: 2em;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+    position: relative;
+}
+
+.control__button--previous:after {
+    content: "";
+    position: absolute;
+    left: -2em;
+    width: 4em;
+    height: 4em;
+    top: -2em;
 }
 
 .control__button--next {
-    margin-left: 2em;
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }
-.control__button--wrapper:hover .control__button--previous {
+
+.control__button--next:after {
+    content: "";
+    position: absolute;
+    left: -2em;
+    width: 4em;
+    height: 4em;
+    top: -2em;
+}
+.control__button--previous:hover {
     transform: rotate(135deg) scale(var(--control__button--scale));
     -webkit-transform: rotate(135deg) scale(var(--control__button--scale));
 }
-.control__button--wrapper:hover .control__button--next {
+
+.control__button--previous:hover:after {
+    left: -0.5em;
+    width: 2em;
+    height: 2em;
+    top: -0.5em;
+}
+
+.control__button--next:hover {
     transform: rotate(-45deg) scale(var(--control__button--scale));
     -webkit-transform: rotate(-45deg) scale(var(--control__button--scale));
+}
+
+.control__button--next:hover:after {
+    left: -0.5em;
+    width: 2em;
+    height: 2em;
+    top: -0.5em;
+}
+
+.day__button,
+.day__button::-moz-focus-inner {
+    font-size: 100%;
+    font-family: inherit;
+    background-color: rgba(54, 96, 235, 0.5);
+    border: none;
+    border-radius: 1em;
+    color: inherit;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.day__li {
+    list-style: none;
 }

@@ -3,27 +3,29 @@ import React from "react";
 const Control = props => {
     return (
         <div className="control">
-            <button className="control__button control__button--today">
+            <button
+                className="control__button control__button--today"
+                onClick={() => {
+                    props.setDate(new Date());
+                    props.navigateView(2);
+                }}
+            >
                 Today
             </button>
-            <div className="control__button--wrapper">
-                <button
-                    className="control__button control__button--previous"
-                    onClick={() => props.setDate(props.type, -1)}
-                ></button>
-            </div>
             <button
-                className="control__button control__label"
-                onClick={() => props.handleClick("up")}
+                className="control__button control__button--previous"
+                onClick={() => props.adjustDate(props.type, -1)}
+            ></button>
+            <button
+                className="control__button control__button--back"
+                onClick={() => props.navigateView(-1)}
             >
                 {props.label}
             </button>
-            <div className="control__button--wrapper">
-                <button
-                    className="control__button control__button--next"
-                    onClick={() => props.setDate(props.type, 1)}
-                ></button>
-            </div>
+            <button
+                className="control__button control__button--next"
+                onClick={() => props.adjustDate(props.type, 1)}
+            ></button>
         </div>
     );
 };

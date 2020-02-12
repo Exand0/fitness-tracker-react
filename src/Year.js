@@ -12,12 +12,19 @@ function Year(props) {
                 key={i}
                 className={
                     i === props.date.getMonth()
-                        ? "months__cell months__cell--current"
-                        : "months__cell"
+                        ? "year__cell year__cell--current"
+                        : "year__cell"
                 }
-                onClick={e =>
-                    props.handleClick("down", props.date.getFullYear(), i)
-                }
+                onClick={() => {
+                    props.navigateView(1);
+                    props.setDate(
+                        new Date(
+                            props.date.getFullYear(),
+                            props.date.getMonth(),
+                            i
+                        )
+                    );
+                }}
             >
                 {date.toLocaleString("default", { month: "long" })}
             </td>
@@ -30,12 +37,12 @@ function Year(props) {
     return (
         <div>
             <Control
-                handleClick={props.handleClick}
+                navigateView={props.navigateView}
                 label={`Year: ${props.date.getFullYear()}`}
                 setDate={props.setDate}
                 type="y"
             ></Control>
-            <table className="months">
+            <table className="year">
                 <thead>
                     <tr></tr>
                 </thead>

@@ -9,34 +9,75 @@ class Calendar extends Component {
         this.state = {
             date: new Date(),
             view: 0,
-            decade: Math.floor(new Date().getFullYear())
+            decade: Math.floor(new Date().getFullYear()),
+            dayIsAcitve: false
         };
         this.navigateView = this.navigateView.bind(this);
-        this.handleClick = this.handleClick.bind(this);
         this.setDate = this.setDate.bind(this);
+        this.adjustDate = this.adjustDate.bind(this);
+        this.toggleDayView = this.toggleDayView.bind(this);
     }
 
+    toggleDayView(val) {
+        this.setState({ dayIsAcitve: val });
+    }
+
+    /*     navigateView(to) {
+        let ind = 0;
+        if (to >= 1) {
+            if (this.state.view >= 0 && this.state.view < 2) {
+                ind = 1;
+            }
+            if (this.state.view === 2) {
+                this.toggleDayView(true);
+            }
+        } else if (to < 0) {
+            if (this.state.view > 0 && this.state.view <= 2) {
+                ind = -1;
+            }
+            if (this.state.view === 2) {
+                this.toggleDayView(false);
+            }
+        }
+        this.setState(state => ({ view: state.view + ind }));
+    } */
+    /* 
     navigateView(to) {
         let ind = 0;
         if (to === "down") {
             if (this.state.view >= 0 && this.state.view < 2) {
                 ind = 1;
             }
+            if (this.state.view === 2) {
+                this.toggleDayView(true);
+            }
         } else if (to === "up") {
             if (this.state.view > 0 && this.state.view <= 2) {
                 ind = -1;
             }
+            if (this.state.view === 2) {
+                this.toggleDayView(false);
+            }
         }
         this.setState(state => ({ view: state.view + ind }));
+    } */
+    navigateView(to) {
+        if (this.state.view + to < 0) {
+            to = 0;
+        } else if (this.state.view + to > 2) {
+            to = 2;
+        }
+        this.setState(state => ({
+            view: state.view + to
+        }));
     }
-    showToday() {
+    setDate(date) {
         this.setState({
-            date: new Date(),
-            decade: Math.floor(new Date().getFullYear()),
-            view: 2
+            date: date,
+            decade: Math.floor(new Date().getFullYear())
         });
     }
-    setDate(type, ind) {
+    adjustDate(type, ind) {
         let year = this.state.date.getFullYear();
         let month = this.state.date.getMonth();
         let day = this.state.date.getDate();
@@ -65,50 +106,43 @@ class Calendar extends Component {
             decade: decade
         });
     }
-    handleClick(
-        direction,
-        year = this.state.date.getFullYear(),
-        month = this.state.date.getMonth(),
-        day = 1
-    ) {
-        this.setState({
-            date: new Date(year, month, day)
-        });
-        this.navigateView(direction);
-    }
     render() {
-        let view;
+        let view = [];
         switch (this.state.view) {
             case 0:
-                view = (
+                view.push(
                     <Decade
                         date={this.state.date}
-                        handleClick={this.handleClick}
+                        navigateView={this.navigateView}
                         setDate={this.setDate}
+                        adjustDate={this.adjustDate}
                         decade={this.state.decade}
                     ></Decade>
                 );
                 break;
             case 1:
-                view = (
+                view.push(
                     <Year
                         date={this.state.date}
-                        handleClick={this.handleClick}
+                        navigateView={this.navigateView}
                         setDate={this.setDate}
+                        adjustDate={this.adjustDate}
                     ></Year>
                 );
                 break;
             case 2:
-                view = (
+                view.push(
                     <Month
                         date={this.state.date}
-                        handleClick={this.handleClick}
+                        navigateView={this.navigateView}
                         setDate={this.setDate}
+                        adjustDate={this.adjustDate}
+                        toggleDayView={this.toggleDayView}
                     ></Month>
                 );
                 break;
         }
-        return view;
+        return <div>{view}</div>;
     }
 }
 

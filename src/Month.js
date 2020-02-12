@@ -5,7 +5,6 @@ function Month(props) {
     let rows = [];
     let row = [];
     let cells = [];
-
     const date = props.date;
 
     const firstDayDate = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -32,14 +31,16 @@ function Month(props) {
                 key={`day${i}`}
                 id={i}
                 className={tdClassName.join(" ")}
-                onClick={e =>
-                    props.handleClick(
-                        "down",
-                        props.date.getFullYear(),
-                        props.date.getMonth(),
-                        i
-                    )
-                }
+                onClick={() => {
+                    props.setDate(
+                        new Date(
+                            props.date.getFullYear(),
+                            props.date.getMonth(),
+                            i
+                        )
+                    );
+                    props.toggleDayView(true);
+                }}
             >
                 {i}
             </td>
@@ -56,10 +57,13 @@ function Month(props) {
     return (
         <div>
             <Control
-                handleClick={props.handleClick}
+                navigateView={props.navigateView}
                 // passing switcher from Calendar further to controls
-                label="Month"
+                label={`${props.date.toLocaleString("default", {
+                    month: "long"
+                })}`}
                 setDate={props.setDate}
+                adjustDate={props.adjustDate}
                 date={props.date}
                 type="m"
             ></Control>

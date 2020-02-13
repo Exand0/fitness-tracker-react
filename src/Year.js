@@ -40,6 +40,7 @@ function Year(props) {
                 navigateView={props.navigateView}
                 label={`Year: ${props.date.getFullYear()}`}
                 setDate={props.setDate}
+                adjustDate={props.adjustDate}
                 type="y"
             ></Control>
             <table className="year">

@@ -39,7 +39,8 @@ function Month(props) {
                             i
                         )
                     );
-                    props.toggleDayView(true);
+                    //props.toggleDayView(true);
+                    props.toggleDayView(true, i);
                 }}
             >
                 {i}

@@ -6,8 +6,6 @@ function Decade(props) {
     let cells = [];
     let week = 0;
     let fullYear = props.date.getFullYear();
-
-    //for (let year = props.decade - 1; year < props.decade + 12; year++) {
     for (let year = 0; year < 12; year++) {
         let currYear = year + props.decade - 1;
         cells.push(

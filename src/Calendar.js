@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Decade from "./Decade";
 import Year from "./Year";
 import Month from "./Month";
+import Day from "./Day";
+import OuterClick from "./OuterClick";
 
 class Calendar extends Component {
     constructor(props) {
@@ -10,7 +12,10 @@ class Calendar extends Component {
             date: new Date(),
             view: 0,
             decade: Math.floor(new Date().getFullYear()),
-            dayIsAcitve: false
+            day: {
+                isActive: false,
+                id: undefined
+            }
         };
         this.navigateView = this.navigateView.bind(this);
         this.setDate = this.setDate.bind(this);
@@ -18,59 +23,36 @@ class Calendar extends Component {
         this.toggleDayView = this.toggleDayView.bind(this);
     }
 
-    toggleDayView(val) {
-        this.setState({ dayIsAcitve: val });
+    toggleDayView(val, id) {
+        if (id && this.state.day.id === id) {
+            if (val === true) {
+                val = false;
+                id = undefined;
+            } else {
+                val = true;
+            }
+        }
+        this.setState({
+            day: {
+                isActive: val,
+                id: id
+            }
+        });
+    }
+    navigateView(to) {
+        let val = this.state.view;
+        if (this.state.view + to < 0) {
+            val = 0;
+        } else if (this.state.view + to > 2) {
+            val = 2;
+        } else {
+            val += to;
+        }
+        this.setState({
+            view: val
+        });
     }
 
-    /*     navigateView(to) {
-        let ind = 0;
-        if (to >= 1) {
-            if (this.state.view >= 0 && this.state.view < 2) {
-                ind = 1;
-            }
-            if (this.state.view === 2) {
-                this.toggleDayView(true);
-            }
-        } else if (to < 0) {
-            if (this.state.view > 0 && this.state.view <= 2) {
-                ind = -1;
-            }
-            if (this.state.view === 2) {
-                this.toggleDayView(false);
-            }
-        }
-        this.setState(state => ({ view: state.view + ind }));
-    } */
-    /* 
-    navigateView(to) {
-        let ind = 0;
-        if (to === "down") {
-            if (this.state.view >= 0 && this.state.view < 2) {
-                ind = 1;
-            }
-            if (this.state.view === 2) {
-                this.toggleDayView(true);
-            }
-        } else if (to === "up") {
-            if (this.state.view > 0 && this.state.view <= 2) {
-                ind = -1;
-            }
-            if (this.state.view === 2) {
-                this.toggleDayView(false);
-            }
-        }
-        this.setState(state => ({ view: state.view + ind }));
-    } */
-    navigateView(to) {
-        if (this.state.view + to < 0) {
-            to = 0;
-        } else if (this.state.view + to > 2) {
-            to = 2;
-        }
-        this.setState(state => ({
-            view: state.view + to
-        }));
-    }
     setDate(date) {
         this.setState({
             date: date,
@@ -141,6 +123,16 @@ class Calendar extends Component {
                     ></Month>
                 );
                 break;
+        }
+        if (this.state.day.isActive) {
+            view.push(
+                <OuterClick
+                    onOuterClick={this.toggleDayView}
+                    excludeClass={"month__cell--day"}
+                >
+                    <Day date={this.state.date}></Day>
+                </OuterClick>
+            );
         }
         return <div>{view}</div>;
     }

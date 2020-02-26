@@ -14,6 +14,7 @@ class OuterClick extends Component {
             !this.node.current.contains(e.target) &&
             !e.target.classList.contains(this.props.excludeClass)
         ) {
+            console.log(this.node.current);
             this.props.onOuterClick(false, undefined);
         }
     }
